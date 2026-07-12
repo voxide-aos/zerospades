@@ -35,7 +35,7 @@ attribute vec2 textureCoordAttribute;
 // [x, y, z]
 attribute vec3 normalAttribute;
 
-varying vec4 textureCoord;
+centroid varying vec4 textureCoord;
 varying vec3 fogDensity;
 varying float flatShading;
 

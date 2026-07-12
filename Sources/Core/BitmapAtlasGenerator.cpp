@@ -69,7 +69,7 @@ namespace spades {
 		for (size_t i = 0; i < bmps.size(); i++) {
 			Bitmap *bmp = bmps[i];
 			if (bmp->GetHeight() > w)
-				w = bmp->GetWidth();
+				w = bmp->GetHeight();
 		}
 
 		for (int b = 1; b < 16; b++) {
@@ -108,6 +108,13 @@ namespace spades {
 
 				Bitmap *outbmp = new Bitmap(ww, hh);
 				uint32_t *outPixels = outbmp->GetPixels();
+
+				// Bitmap's backing store is not zero-initialized. Any gap
+				// between the packed bitmaps would otherwise contain garbage
+				// heap data, which bleeds into the packed images' edges under
+				// texture filtering (visible as rainbow pixels, e.g. around
+				// the weapon sights). Clear the whole atlas first.
+				std::memset(outPixels, 0, (size_t)ww * (size_t)hh * 4);
 
 				Result result;
 				for (BinPack2D::Content<Item>::Vector::iterator it = output.Get().begin();

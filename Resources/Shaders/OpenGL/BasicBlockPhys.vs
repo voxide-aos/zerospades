@@ -39,7 +39,7 @@ attribute vec3 normalAttribute;
 // [sx, sy, sz]
 attribute vec3 fixedPositionAttribute;
 
-varying vec2 ambientOcclusionCoord;
+centroid varying vec2 ambientOcclusionCoord;
 varying vec4 color;
 varying vec3 fogDensity;
 

@@ -18,7 +18,7 @@
 
  */
 
-varying vec4 textureCoord;
+centroid varying vec4 textureCoord;
 varying vec3 fogDensity;
 varying float flatShading;
 

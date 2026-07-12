@@ -144,6 +144,11 @@ namespace spades {
 
 			std::string finalSource;
 
+			// GLSL 1.20 is required for the `centroid` interpolation
+			// qualifier (used to keep AO texture coords inside their tile
+			// under MSAA). #version must be the first directive.
+			finalSource += "#version 120\n";
+
 			if (settings.r_hdr) {
 				finalSource += "#define USE_HDR 1\n";
 				finalSource += "#define LINEAR_FRAMEBUFFER 1\n";

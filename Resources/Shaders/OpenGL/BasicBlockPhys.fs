@@ -19,7 +19,7 @@
  */
 
 varying vec4 color;
-varying vec2 ambientOcclusionCoord;
+centroid varying vec2 ambientOcclusionCoord;
 varying vec3 fogDensity;
 
 varying vec3 viewSpaceCoord;

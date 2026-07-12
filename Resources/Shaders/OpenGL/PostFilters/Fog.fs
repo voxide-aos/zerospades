@@ -48,7 +48,12 @@ float depthAt(vec2 pt) {
 }
 
 float fogDensFunc(float time) {
-	return time;// * time;
+	// Must match the extinction curve applied by the solid pass
+	// (`Fog.vs::ComputeFogDensity`, quadratic in distance). With this
+	// linearized (the `* time` commented out), the filter re-added more
+	// fog light than the solid pass removed for all d < fogDistance,
+	// making blocks look washed-out/translucent under `r_fogShadow 1`.
+	return time * time;
 }
 
 void main() {
